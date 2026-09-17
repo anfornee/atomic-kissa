@@ -17,6 +17,20 @@ npm run lint
 npm run build
 ```
 
+## Firebase Hosting
+
+The registered Firebase web app is initialized in `src/firebase.ts`. Hosting deploys the Vite production output from `dist` to the `atomic-kissa` Firebase project; no Authentication, database, Storage, or other Firebase product is enabled by this setup.
+
+Authenticate the local CLI once, preview the built site with the Hosting emulator, and deploy when ready:
+
+```bash
+npm exec firebase login
+npm run hosting:serve
+npm run deploy
+```
+
+The Firebase web configuration is public client metadata. Authorization still belongs in Firebase Security Rules if backend products are added later.
+
 ## Design and motion documentation
 
 - [Experience principles](docs/experience-principles.md)
