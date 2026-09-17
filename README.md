@@ -31,6 +31,16 @@ npm run deploy
 
 The Firebase web configuration is public client metadata. Authorization still belongs in Firebase Security Rules if backend products are added later.
 
+### GitHub deployment and credentials
+
+GitHub Actions creates a Firebase Hosting preview for pull requests opened from this repository and deploys the live site when changes reach `main`. Both workflows build with `npm ci && npm run build` before deploying.
+
+The deploy credential must remain in the repository's Actions secrets as `FIREBASE_SERVICE_ACCOUNT_ATOMIC_KISSA`. The workflow references that secret but the service-account JSON must never be committed. `GITHUB_TOKEN` is supplied automatically by GitHub Actions.
+
+The values in `src/firebase.ts`, including the Firebase Web API key, identify the public browser app and are expected to ship in the client bundle. They do not grant administrative access. If Authentication, Firestore, Realtime Database, or Storage is added later, protect data with Firebase Security Rules and consider App Check. Keep server credentials, private keys, and non-Firebase API secrets out of `VITE_*` variables because Vite exposes those values to browser code.
+
+Local environment files and common Firebase service-account filenames are excluded by `.gitignore`. An `.env.example` file may be committed later, but it must contain placeholders only.
+
 ## Design and motion documentation
 
 - [Experience principles](docs/experience-principles.md)
