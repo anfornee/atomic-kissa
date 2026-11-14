@@ -1,15 +1,68 @@
 # Interaction guidelines
 
-User input should feel acknowledged immediately. A subtle change in opacity, tension, glow, or motion is enough to confirm that an action has begun. The larger transformation may then unfold slowly. Deliberate slowness should remain visibly intentional and should never resemble lag.
+**Status: Approved working direction**
 
-Interactive controls must remain semantic and accessible beneath visual effects. Buttons and links should retain clear labels, keyboard focus, appropriate state attributes, and usable hit areas. Canvas is a visual layer, not the interaction surface.
+## Information architecture first
 
-Keyboard behavior should follow the same state model as pointer interaction. Focus should remain visible, and Escape should close transient navigation where expected. When a transition temporarily prevents another action, the control’s disabled or expanded state should communicate that condition.
+The public foundation uses clear destinations:
 
-Mobile is the baseline rather than a reduced desktop layout. Geometry sampling, hit targets, spacing, particle density, and performance should be checked at narrow viewports first, then allowed to expand into larger compositions.
+- Home
+- Listen
+- Drink
+- Explore
+- About
+- Individual entry pages
 
-Scene changes should preserve spatial or material continuity when practical. A selected form can become the next scene’s object instead of disappearing before an unrelated page appears. This continuity is especially valuable for major navigation moments; minor actions do not all need elaborate choreography.
+Each destination must have a stable URL, support browser back and forward navigation, be directly linkable, and remain usable without animation. Category names may become route segments, but the exact URL convention is an [open question](decisions-and-open-questions.md#open-questions).
 
-Particle effects should carry meaning: shared material, transformation, focus, or continuity. They should not become a universal hover treatment or ambient decoration on every element.
+Persistent navigation should be present but understated. Visitors should always be able to determine where they are and how to leave an immersive state.
 
-Reduced-motion alternatives must preserve access to every state and control. Simplifying travel, drift, or rotation should not remove context or make feedback ambiguous. Short fades, clear settled geometry, and stable focus can maintain the project’s tone without reproducing its full motion.
+## Progressive enhancement
+
+Semantic HTML, content, routes, and ordinary scrolling form the baseline. Experimental navigation, atmospheric archives, transitions, particles, and scroll-reactive scenes enhance that foundation rather than replace it.
+
+Normal vertical scrolling may pace changes in light, color, scale, and emphasis. Avoid aggressive scroll hijacking, hidden browser behavior, or interactions that require a precise device. An immersive archive should have an accessible conventional list or grid alternative, whether that is the same responsive interface or an explicit view.
+
+## Input and feedback
+
+Input should feel acknowledged immediately. A small change in opacity, tension, state, or motion can confirm that an action has begun before a slower transformation completes.
+
+Interactive controls must remain semantic beneath visual effects. Buttons and links need clear accessible names, visible focus, appropriate state attributes, and usable hit areas. Canvas and decorative SVG are visual layers, not the only interaction surfaces.
+
+Keyboard behavior follows the same state model as pointer behavior. Escape should close transient navigation or immersive overlays where expected. If a transition temporarily prevents an action, the disabled, busy, or expanded state should communicate that condition without trapping focus.
+
+## Navigation and transitions
+
+Scene changes may preserve spatial or material continuity—for example, a selected form becoming part of the destination. Continuity is most valuable for major moments; routine controls do not all need choreography.
+
+Transitions must not delay URL updates unpredictably, break history, conceal loading failures, or make the destination inaccessible. Where animation and navigation compete, navigation wins. Entry content should have a stable reading experience independent of its arrival transition.
+
+## Responsive and resilient behavior
+
+Mobile is the baseline. Test reading order, hit targets, safe areas, content density, media crops, particle budgets, virtual keyboards, and focus movement at narrow widths before expanding the composition.
+
+Every meaningful state should account for:
+
+- Slow or failed media
+- Missing optional content
+- Long titles and translated or user-entered text
+- Touch, pointer, and keyboard input
+- High zoom and text resizing
+- Reduced motion and increased contrast preferences
+- Server-rendered content before client enhancement is ready
+
+## Accessibility baseline
+
+The working target is WCAG 2.2 Level AA for the public site and CMS. Final conformance processes and supported-browser policy remain to be formalized.
+
+At minimum:
+
+- Preserve logical headings, landmarks, reading order, and focus order.
+- Provide text alternatives, captions, and credits where relevant.
+- Do not rely on color, position, sound, or motion alone to convey meaning.
+- Keep focus visible against changing backgrounds.
+- Announce meaningful asynchronous state changes without narrating decorative motion.
+- Offer complete reduced-motion behavior and avoid unexpected autoplay audio.
+- Keep CMS workflows operable without drag-and-drop or precision pointing.
+
+Reduced-motion principles are detailed in [Motion language](motion-language.md).

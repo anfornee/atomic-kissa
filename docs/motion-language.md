@@ -1,24 +1,50 @@
 # Motion language
 
-Atomic Kissa treats particles as shared matter. A hamburger can become an X; a word can loosen, travel, and become a record. Reusing visual material across states makes navigation feel continuous rather than assembled from separate effects.
+**Status: Approved working direction**
 
-SVG supplies exact source and destination geometry. Canvas particles sample those same paths, and the crisp SVG takes over only when the particles are almost settled. The handoff works when both layers share the same dimensions, transforms, viewBox, and placement. A crossfade should reveal clarity without exposing two misaligned versions of the shape.
+Atomic Kissa's motion is calm, suspended, organic, and slightly ceremonial. It suggests matter moving through a quiet room rather than effects triggered for display. Stillness provides contrast; motion should have a reason to begin and a clear state in which to rest.
 
-Formation often benefits from a restrained stagger. Small differences in start time give a composition rhythm without turning it into a cascade. Major transformations can last several seconds when each phase remains legible and something is continuously changing.
+## Purposes of motion
 
-Useful timing ranges include:
+Motion may communicate:
 
-- Input acknowledgement: roughly 50–200ms
-- Small interface responses: a few hundred milliseconds
-- Menu construction or dissolution: a few seconds
-- Scene-to-scene transformation: several seconds
+- Immediate acknowledgement of input
+- Continuity between an origin and destination
+- Hierarchy or a change of state
+- The pace and atmosphere of an editorial passage
+- Shared material, such as a form reorganizing into another form
 
-These are starting points, not specifications. Timing should be tuned by feel, viewport, particle density, and the visual distance being traveled.
+Motion should not become a universal hover treatment, ambient decoration on every element, or compensation for weak information architecture.
 
-Long sequences should overlap related phases. Dissolve can blend into travel, and travel can flow into formation. This avoids dead pauses while retaining an unhurried pace. The visitor should feel suspended in a transformation, not held in a queue.
+## Continuity and handoffs
 
-Resting particles may move almost imperceptibly. Stable per-particle phases and long periods create breathing or floating; fresh randomness creates jitter. Idle motion should remain attached to its geometry and become noticeable only with attention.
+A menu mark may become a close mark; a title may loosen, travel, and become part of the next scene. Reusing visual material can make navigation feel continuous rather than assembled from unrelated effects.
 
-Movement is time-based and driven by `requestAnimationFrame`, so elapsed time—not frame count—determines progress. This keeps motion consistent when frame rates vary.
+When crisp and particle-rendered forms meet, they should share a geometry and coordinate source whenever practical. Crossfades work when dimensions, transforms, view boxes, and placement align. The exact implementation need not reproduce the historical prototype.
 
-Reduced-motion behavior should preserve state, hierarchy, tone, and immediate feedback while replacing particle-heavy travel, continuous drift, and rotation with short, composed fades or stationary forms.
+## Pacing
+
+Input acknowledgement should occur quickly—generally within a fraction of a second—even when the complete transition takes several seconds. Long sequences should overlap related phases so that dissolve, travel, and formation feel like one change rather than a queue of pauses.
+
+Small differences in start time can give a composition rhythm without becoming a theatrical cascade. Timing should be tuned by feel, viewport, distance, content, and performance rather than treated as a universal token table.
+
+Ordinary vertical scrolling may drive restrained atmospheric change. The page should continue to behave like a page: avoid forced scroll positions, long pinned passages without clear benefit, and motion that makes reading or orientation harder.
+
+## Technical qualities
+
+Animation should be based on elapsed time rather than frame count. Continuous loops should run only while visible movement requires them. Particle density, device-pixel-ratio caps, resize behavior, memory, and battery cost need explicit mobile testing.
+
+Motion profiles exposed to the CMS must be named, bounded, and tested compositions. Content may choose a profile; it may not provide arbitrary timing code, scripts, or animation properties.
+
+## Reduced motion
+
+Reduced motion is a composed version of the same experience. It must preserve content, state, hierarchy, immediate feedback, and navigation while replacing particle-heavy travel, parallax, continuous drift, rotation, and large spatial movement with stable forms or short fades.
+
+The reduced-motion experience should not:
+
+- Remove routes or controls
+- Depend on an animation's completion to reveal essential content
+- Substitute abrupt flashes for long movement
+- Leave decorative loops running merely because they are slow
+
+The public site and CMS should remain understandable before client-side motion initializes and if enhancement fails entirely. The historical particle experiments and their lessons are documented in [Prototype history](prototype-history.md).
